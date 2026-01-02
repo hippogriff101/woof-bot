@@ -1,9 +1,11 @@
-# 🐶 Woof Bot
+<img width="400" height="auto" alt="woof_ysws_logo" src="https://github.com/user-attachments/assets/45f89700-0b65-45a2-a2f5-f74908c68747" />
+
+## 🐶 WoofBot
 This is a Slack Bot for the YSWS Woof!
 
 You can have a look at our website [here](https://woof.hackclub.com)
 
-## ⭐ Features
+### ⭐ Features
 
 - 🐕 Reacts with a random emoji (from list) when user types 'woof' in channel
 - ```/woofpics``` sends a picture of a communinity members dog (powered by ```#cdn``` 😁)
@@ -11,11 +13,11 @@ You can have a look at our website [here](https://woof.hackclub.com)
 - 🐩 ```/woof```
 - 🦴 ```@woofBot``` reacts to message and sends dog image in thread
 
-## 🧪 Try it out
+### 🧪 Try it out
 
 The Slack Channel is over [here (#woofbot-spam)](https://hackclub.enterprise.slack.com/archives/C0A5XDSUZV3) _only avalible to members of Hack Club!_
 
-## 👷‍♂️ Install
+### 👷‍♂️ Install
 _make sure ```git``` is installed on your device_
 
 - Clone the Repo
