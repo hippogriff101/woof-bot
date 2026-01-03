@@ -6,18 +6,13 @@ import random
 from openrouter import OpenRouter
 import re
 
-# I promis it aint ai just my dody comments
-
-load_dotenv() # .env!!!!
-
+# --------------------
+load_dotenv()
 app = App(token=os.getenv("SLACK_BOT_TOKEN"))
-
-# ai.hackclub.com!
 client = OpenRouter(
     api_key=(os.getenv("HCAI-API_KEY")),
     server_url="https://ai.hackclub.com/proxy/v1",
 )
-# Veriables for everything:
 emojis = ["dog", "dog2", "woofwoof", "dogheart","neodog"]
 dog_pics = [
     "https://hc-cdn.hel1.your-objectstorage.com/s/v3/882540f107764bbc_275c634a-ee0a-43c5-b820-1e90c75f91e2.jpeg",
@@ -28,24 +23,77 @@ dog_pics = [
     "https://hc-cdn.hel1.your-objectstorage.com/s/v3/227d7c199c51969d_img_8431.jpg",
     "https://hc-cdn.hel1.your-objectstorage.com/s/v3/31016a72efd0661f_img_9854.jpg",
 ]
+# --------------------
 
-@app.event("message") #idk what this does but it kept bugging me in terminal
-def handle_other_messages():
-    pass
-
-@app.message(re.compile("woof", re.IGNORECASE)) # random dog emojiiii
-def woof_reaction(message, client):
+@app.message(re.compile("woof|wruff|wooof", re.IGNORECASE))
+def woof_reaction(message, client, say):
     print("Woof message detected")
     client.reactions_add(
         channel=message["channel"],
         timestamp=message["ts"],
         name=random.choice(emojis)
     )
+    guess = random.randint(1, 3)
+    thread_ts = message.get("thread_ts", message["ts"])
+    if guess == 3:
+        say(
+                text="Here's a cute dog pic!",
+                blocks=[
+                    {
+                        "type": "image",
+                        "image_url": random.choice(dog_pics),
+                        "alt_text": "Cute Dog"
+                    },
+                ],
+                thread_ts=thread_ts
+    )
+    elif guess == 2:
+        say(
+            text="Woof!",
+            blocks=[
+                {
+                    "type": "section",
+                    "text": {
+                        "type": "mrkdwn",
+                        "text": "*Woof!*"
+                    }
+                },
+            ],
+            thread_ts=thread_ts
+        )
+    else:
+        pass
+
+@app.message(re.compile("meow", re.IGNORECASE))
+def meow_reaction(message, client, say):
+    print("Meow message detected")
+    client.reactions_add(
+        channel=message["channel"],
+        timestamp=message["ts"],
+        name="neodog_evil"
+    )
+    thread_ts = message.get("thread_ts", message["ts"])
+    say(
+        text="i feel betrayed!",
+        blocks=[
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "*i feel betrayed!* :neodog_evil:."
+                }
+            },
+        ],
+        thread_ts=thread_ts
+    )
+
+@app.event("message")
+def handle_other_messages():
+    pass
 
 @app.event("app_mention")
 def handle_mention(event, say, client):
     print("Bot mentioned in message")
-    pic = random.choice(dog_pics)
     client.reactions_add(
         channel=event["channel"],
         timestamp=event["ts"],
@@ -81,9 +129,20 @@ def woof_command(ack, respond):
     )
 
 @app.command("/ideas")
-def woof_ideas_command(ack, say):
+def woof_ideas_command(ack, say, respond):
     ack()
-    print("Ideas command invoked")
+    respond(
+        blocks=[
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": "Got you! Generating a creative dog-related project idea now... :woofwoof:"
+                }
+            },
+        ]
+    )    
+    print("Ideas command invoked & preview sent")
     response = client.chat.send(
         model="qwen/qwen3-32b",
         messages=[
@@ -91,14 +150,16 @@ def woof_ideas_command(ack, say):
         ],
         stream=False,
     )
-    print("Received response from OpenRouter:", response)
+    print("Received response from OpenRouter: ", response.choices[0].message.content)
+    idea_text = "Here's your idea: " + response.choices[0].message.content
     say(
+        text=idea_text,
         blocks=[
             {
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": response.choices[0].message.content
+                    "text": idea_text
                 }
             },
         ]
