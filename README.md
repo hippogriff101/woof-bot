@@ -1,4 +1,4 @@
-<img width="400" height="auto" alt="woof_ysws_logo" src="https://github.com/user-attachments/assets/45f89700-0b65-45a2-a2f5-f74908c68747" />
+<img width="1072" height="325" alt="image" src="https://github.com/user-attachments/assets/6997cca0-830f-4a5d-94a4-da67eb7cfe39" />
 
 ## 🐶 WoofBot
 This is a Slack Bot for the YSWS Woof!
