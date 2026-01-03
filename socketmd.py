@@ -23,7 +23,10 @@ dog_pics = [
     "https://hc-cdn.hel1.your-objectstorage.com/s/v3/882540f107764bbc_275c634a-ee0a-43c5-b820-1e90c75f91e2.jpeg",
     "https://hc-cdn.hel1.your-objectstorage.com/s/v3/db3d590ad90c3e09_img_0422.jpg",
     "https://hc-cdn.hel1.your-objectstorage.com/s/v3/1363c8a1eec46da9_monzi.jpg",
-    "https://hc-cdn.hel1.your-objectstorage.com/s/v3/0458730ae579c1bb_fullsizerender.jpg"
+    "https://hc-cdn.hel1.your-objectstorage.com/s/v3/0458730ae579c1bb_fullsizerender.jpg",
+    "https://hc-cdn.hel1.your-objectstorage.com/s/v3/600a6274d27e6a31_59ffb974-acb4-400a-955c-d11b5dd5faa1-1_all_43378.jpg",
+    "https://hc-cdn.hel1.your-objectstorage.com/s/v3/227d7c199c51969d_img_8431.jpg",
+    "https://hc-cdn.hel1.your-objectstorage.com/s/v3/31016a72efd0661f_img_9854.jpg",
 ]
 
 @app.event("message") #idk what this does but it kept bugging me in terminal
