@@ -12,7 +12,7 @@ This project is being submitted to [Flavortown](flavortown.hackclub.com)
 > [!NOTE]
 > This is still a beta project and is not finished or optimised
 
-### ⭐ Features
+### Features
 
 - 🐕 Reacts with a random emoji (from list) and has a 1 in 3 chance of either: replying in thread, sending a dog pic in thread or passing when user types 'woof' in channel 
 - ```/woofpics``` sends a picture of a communinity members dog (powered by ```#cdn``` 😁)
@@ -21,13 +21,13 @@ This project is being submitted to [Flavortown](flavortown.hackclub.com)
 - 🦴 ```@woofBot``` reacts to message and sends dog image in thread
 - 😾 Reacts with ```:neocat_evil``` (_hc slack exclusive_) and sends message in thread when 'meow' is typed in chat
 
-### 🧪 Try it out
+### Try it out
 
 The Slack Channel is over [here (#woofbot-spam)](https://hackclub.enterprise.slack.com/archives/C0A5XDSUZV3) 
 
 _only avalible to members of Hack Club!_
 
-### 👷‍♂️ Install
+### Install
 _make sure ```git``` is installed on your device_
 
 - Clone the Repo
