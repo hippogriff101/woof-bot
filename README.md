@@ -10,7 +10,7 @@ This project is being submitted to [Flavortown](flavortown.hackclub.com)
 ![](https://hackatime-badge.hackclub.com/U078VN0UU2K/woof-bot)
 
 > [!NOTE]
-> This is still a beta project and is not finished or optimised
+> This is not currently being hosted! 😢
 
 ### Features
 
