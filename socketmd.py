@@ -1,12 +1,13 @@
-import os
+import os, random, re
 from dotenv import load_dotenv
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
-import random
 from openrouter import OpenRouter
-import re
+from datetime import datetime, timedelta, timezone
 
 # --------------------
+window_start = datetime.now(timezone.utc)
+request_count = 0
 load_dotenv()
 app = App(token=os.getenv("SLACK_BOT_TOKEN"))
 client = OpenRouter(
@@ -37,14 +38,15 @@ def woof_reaction(message, client, say):
     thread_ts = message.get("thread_ts", message["ts"])
     if guess == 3:
         say(
-                text="Here's a cute dog pic!",
-                blocks=[
-                    {
-                        "type": "image",
-                        "image_url": random.choice(dog_pics),
-                        "alt_text": "Cute Dog"
-                    },
-                ],
+#                text="Here's a cute dog pic!",
+#                blocks=[
+#                    {
+#                        "type": "image",
+#                        "image_url": random.choice(dog_pics),
+#                        "alt_text": "Cute Dog"
+#                    },
+#                ],
+                text="Due to CDN issues, dog pictures are currently unavailable. I'm so sorry, have a look at the woof website if you are craving them! woof.hackclub.com/dogs :neodog_cry:",
                 thread_ts=thread_ts
     )
     elif guess == 2:
@@ -100,16 +102,16 @@ def handle_mention(event, say, client):
         name=random.choice(emojis)
     )
     say(
-        text="Here's a cute dog pic!",
-        blocks=[
-            {
-                "type": "image",
-                "image_url": random.choice(dog_pics),
-                "alt_text": "Cute Dog"
-            },
-        ],
-        thread_ts=event["ts"]
-    )
+#                text="Here's a cute dog pic!",
+#                blocks=[
+#                    {
+#                        "type": "image",
+#                        "image_url": random.choice(dog_pics),
+#                        "alt_text": "Cute Dog"
+#                    },
+#                ],
+        text="Due to CDN issues, dog pictures are currently unavailable. I'm so sorry, have a look at the woof website if you are craving them! woof.hackclub.com/dogs :neodog_cry:",
+        )
 
 @app.command("/woof")
 def woof_command(ack, respond):
@@ -130,7 +132,30 @@ def woof_command(ack, respond):
 
 @app.command("/ideas")
 def woof_ideas_command(ack, say, respond):
+    global window_start, request_count
     ack()
+    print("Ideas command invoked")
+    
+    now = datetime.now(timezone.utc)
+    if now - window_start >= timedelta(minutes=60):
+        window_start = now
+        request_count = 0
+    
+    if request_count >= 10:
+        respond(
+            blocks=[
+                {
+                    "type": "section",
+                    "text": {
+                        "type": "mrkdwn",
+                        "text": "Hey there! Sorry, but I've reached my limit of generating ideas for now. Please try again later! :woofwoof:"
+                    }
+                },
+            ]
+        )
+        return
+
+    request_count += 1
     respond(
         blocks=[
             {
@@ -141,8 +166,8 @@ def woof_ideas_command(ack, say, respond):
                 }
             },
         ]
-    )    
-    print("Ideas command invoked & preview sent")
+    )
+    print("Preview Sent to channel, now generating idea with OpenRouter")    
     response = client.chat.send(
         model="qwen/qwen3-32b",
         messages=[
@@ -165,7 +190,6 @@ def woof_ideas_command(ack, say, respond):
         ]
     )
     print("Idea sent to channel")
-
 @app.command("/dogpics")
 def woof_pics_command(ack, respond):
     print("Dog pics command invoked")
@@ -177,14 +201,15 @@ def woof_pics_command(ack, respond):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-                    "text": f"Here are some cute dog pictures for you! :{random.choice(emojis)}:"
+#                   "text": f"Here are some cute dog pictures for you! :{random.choice(emojis)}:"
+                    "text": "Due to CDN issues, dog pictures are currently unavailable. I'm so sorry, have a look at the woof website if you are craving them! woof.hackclub.com/dogs :neodog_cry:"
                 }
             },
-            {
-                "type": "image",
-                "image_url": random.choice(dog_pics),
-                "alt_text": "Cute Dog"
-            },
+#            {
+#                "type": "image",
+#                "image_url": random.choice(dog_pics),
+#                "alt_text": "Cute Dog"
+#            },
         ]
     )
 
