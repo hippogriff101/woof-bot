@@ -16,13 +16,13 @@ client = OpenRouter(
 )
 emojis = ["dog", "dog2", "woofwoof", "dogheart","neodog"]
 dog_pics = [
-    "https://hc-cdn.hel1.your-objectstorage.com/s/v3/882540f107764bbc_275c634a-ee0a-43c5-b820-1e90c75f91e2.jpeg",
-    "https://hc-cdn.hel1.your-objectstorage.com/s/v3/db3d590ad90c3e09_img_0422.jpg",
-    "https://hc-cdn.hel1.your-objectstorage.com/s/v3/1363c8a1eec46da9_monzi.jpg",
-    "https://hc-cdn.hel1.your-objectstorage.com/s/v3/0458730ae579c1bb_fullsizerender.jpg",
-    "https://hc-cdn.hel1.your-objectstorage.com/s/v3/600a6274d27e6a31_59ffb974-acb4-400a-955c-d11b5dd5faa1-1_all_43378.jpg",
-    "https://hc-cdn.hel1.your-objectstorage.com/s/v3/227d7c199c51969d_img_8431.jpg",
-    "https://hc-cdn.hel1.your-objectstorage.com/s/v3/31016a72efd0661f_img_9854.jpg",
+    "http://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/882540f107764bbc_275c634a-ee0a-43c5-b820-1e90c75f91e2.jpeg",
+    "http://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/db3d590ad90c3e09_img_0422.jpg",
+    "http://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/1363c8a1eec46da9_monzi.jpg",
+    "http://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/0458730ae579c1bb_fullsizerender.jpg",
+    "http://cdn.hackclub.com/rescue?url=`https://hc-cdn.hel1.your-objectstorage.com/s/v3/600a6274d27e6a31_59ffb974-acb4-400a-955c-d11b5dd5faa1-1_all_43378.jpg",
+    "http://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/227d7c199c51969d_img_8431.jpg",
+    "http://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/31016a72efd0661f_img_9854.jpg",
 ]
 # --------------------
 
@@ -38,15 +38,14 @@ def woof_reaction(message, client, say):
     thread_ts = message.get("thread_ts", message["ts"])
     if guess == 3:
         say(
-#                text="Here's a cute dog pic!",
-#                blocks=[
-#                    {
-#                        "type": "image",
-#                        "image_url": random.choice(dog_pics),
-#                        "alt_text": "Cute Dog"
-#                    },
-#                ],
-                text="Due to CDN issues, dog pictures are currently unavailable. I'm so sorry, have a look at the woof website if you are craving them! woof.hackclub.com/dogs :neodog_cry:",
+                text="Here's a cute dog pic!",
+                blocks=[
+                    {
+                        "type": "image",
+                        "image_url": random.choice(dog_pics),
+                        "alt_text": "Cute Dog"
+                    },
+                ],
                 thread_ts=thread_ts
     )
     elif guess == 2:
@@ -102,15 +101,14 @@ def handle_mention(event, say, client):
         name=random.choice(emojis)
     )
     say(
-#                text="Here's a cute dog pic!",
-#                blocks=[
-#                    {
-#                        "type": "image",
-#                        "image_url": random.choice(dog_pics),
-#                        "alt_text": "Cute Dog"
-#                    },
-#                ],
-        text="Due to CDN issues, dog pictures are currently unavailable. I'm so sorry, have a look at the woof website if you are craving them! woof.hackclub.com/dogs :neodog_cry:",
+                text="Here's a cute dog pic!",
+                blocks=[
+                    {
+                        "type": "image",
+                        "image_url": random.choice(dog_pics),
+                        "alt_text": "Cute Dog"
+                    },
+                ],
         )
 
 @app.command("/woof")
@@ -201,15 +199,14 @@ def woof_pics_command(ack, respond):
                 "type": "section",
                 "text": {
                     "type": "mrkdwn",
-#                   "text": f"Here are some cute dog pictures for you! :{random.choice(emojis)}:"
-                    "text": "Due to CDN issues, dog pictures are currently unavailable. I'm so sorry, have a look at the woof website if you are craving them! woof.hackclub.com/dogs :neodog_cry:"
+                   "text": f"Here are some cute dog pictures for you! :{random.choice(emojis)}:"
                 }
             },
-#            {
-#                "type": "image",
-#                "image_url": random.choice(dog_pics),
-#                "alt_text": "Cute Dog"
-#            },
+            {
+                "type": "image",
+                "image_url": random.choice(dog_pics),
+                "alt_text": "Cute Dog"
+            },
         ]
     )
 
