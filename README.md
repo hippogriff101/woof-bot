@@ -16,7 +16,7 @@ This project is being submitted to [Flavortown](flavortown.hackclub.com)
 
 - 🐕 Reacts with a random emoji (from list) and has a 1 in 3 chance of either: replying in thread, sending a dog pic in thread or passing when user types 'woof' in channel 
 - ```/woofpics``` sends a picture of a communinity members dog (powered by ```#cdn``` 😁)
-- 🧠 ```/idea``` uses [Hack Club AI](ai.hackclub.com) to generate a idea for a dog themed project
+- 🧠 ```/idea``` uses [Hack Club AI](ai.hackclub.com) to generate a idea for a dog themed project with hourly rate limits
 - 🐩 ```/woof```
 - 🦴 ```@woofBot``` reacts to message and sends dog image in thread
 - 😾 Reacts with ```:neocat_evil``` (_hc slack exclusive_) and sends message in thread when 'meow' is typed in chat
@@ -53,11 +53,11 @@ pip install -r requirements.txt
 ```
 _if having issues then manually install the packages_
 
-- Make a ```.env``` _(demo ```.env``` will me made soon)_
+- Rename `example.env` to `.env`
 
 _make sure to never commit private variables_
 
-You need:
+Add the following enviromental variables:
 ```
 SLACK_BOT_TOKEN=
 HCAI-API_KEY=
