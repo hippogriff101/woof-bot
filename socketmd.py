@@ -20,7 +20,7 @@ dog_pics = [
     "http://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/db3d590ad90c3e09_img_0422.jpg",
     "http://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/1363c8a1eec46da9_monzi.jpg",
     "http://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/0458730ae579c1bb_fullsizerender.jpg",
-    "http://cdn.hackclub.com/rescue?url=`https://hc-cdn.hel1.your-objectstorage.com/s/v3/600a6274d27e6a31_59ffb974-acb4-400a-955c-d11b5dd5faa1-1_all_43378.jpg",
+    "http://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/600a6274d27e6a31_59ffb974-acb4-400a-955c-d11b5dd5faa1-1_all_43378.jpg",
     "http://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/227d7c199c51969d_img_8431.jpg",
     "http://cdn.hackclub.com/rescue?url=https://hc-cdn.hel1.your-objectstorage.com/s/v3/31016a72efd0661f_img_9854.jpg",
 ]
@@ -166,13 +166,18 @@ def woof_ideas_command(ack, say, respond):
         ]
     )
     print("Preview Sent to channel, now generating idea with OpenRouter")    
-    response = client.chat.send(
-        model="qwen/qwen3-32b",
-        messages=[
-            {"role": "user", "content": "You are a AI Slack Bot, your only duty is to respond with SHORT one sentance creative project idea related to dogs and would take 5 hourse to code. Please do not use markdown formatting or any other formatting. Just respond with the idea."}
-        ],
-        stream=False,
-    )
+    try:
+        response = client.chat.send(
+            model="qwen/qwen3-32b",
+            messages=[
+                {"role": "user", "content": "You are a AI Slack Bot, your only duty is to respond with SHORT one sentance creative project idea related to dogs and would take 5 hourse to code. Please do not use markdown formatting or any other formatting. Just respond with the idea."}
+            ],
+            stream=False,
+        )
+    except Exception as e:
+        print(f"API error: {e}")
+        respond(blocks=[{"type": "section", "text": {"type": "mrkdwn", "text": "Oops, idea generation failed, thats an API not my fault, :woofwoof:!"}}])
+        return
     print("Received response from OpenRouter: ", response.choices[0].message.content)
     idea_text = "Here's your idea: " + response.choices[0].message.content
     say(
