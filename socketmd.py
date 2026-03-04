@@ -129,11 +129,12 @@ def woof_command(ack, respond):
     )
 
 @app.command("/ideas")
-def woof_ideas_command(ack, say, respond):
+def woof_ideas_command(ack, say, respond, command):
     global window_start, request_count
     ack()
     print("Ideas command invoked")
-    
+    user_id = command["user_id"]
+
     now = datetime.now(timezone.utc)
     if now - window_start >= timedelta(minutes=60):
         window_start = now
@@ -146,7 +147,7 @@ def woof_ideas_command(ack, say, respond):
                     "type": "section",
                     "text": {
                         "type": "mrkdwn",
-                        "text": "Hey there! Sorry, but I've reached my limit of generating ideas for now. Please try again later! :woofwoof:"
+                        "text": f"Hey there! Sorry, but I've reached my limit of generating ideas for now. Please try again later! :woofwoof:"
                     }
                 },
             ]
@@ -179,7 +180,7 @@ def woof_ideas_command(ack, say, respond):
         respond(blocks=[{"type": "section", "text": {"type": "mrkdwn", "text": "Oops, idea generation failed, thats an API not my fault, :woofwoof:!"}}])
         return
     print("Received response from OpenRouter: ", response.choices[0].message.content)
-    idea_text = "Here's your idea: " + response.choices[0].message.content
+    idea_text = f"Here's your idea, <@{user_id}>: " + response.choices[0].message.content
     say(
         text=idea_text,
         blocks=[

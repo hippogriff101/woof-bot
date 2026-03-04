@@ -1,11 +1,13 @@
 <img width="500" height="auto" alt="WoofBot Banner" src="https://github.com/user-attachments/assets/6997cca0-830f-4a5d-94a4-da67eb7cfe39" />
 
-## 🐶 WoofBot
+## WoofBot
 This is a Slack Bot for the YSWS Woof!
 
-You can have a look at our website [here](https://woof.hackclub.com)
+You can have a look at our website [here](https://woof.hackclub.com).
 
-This project is being submitted to [Flavortown](flavortown.hackclub.com)
+Read my blog post on woof [here](https://blog.freddieyershon.co.uk/hackclub/2026/02/03/woof.html).
+
+This project is being submitted to [Flavortown](flavortown.hackclub.com).
 
 ![](https://hackatime-badge.hackclub.com/U078VN0UU2K/woof-bot)
 
@@ -14,12 +16,12 @@ This project is being submitted to [Flavortown](flavortown.hackclub.com)
 
 ### Features
 
-- 🐕 Reacts with a random emoji (from list) and has a 1 in 3 chance of either: replying in thread, sending a dog pic in thread or passing when user types 'woof' in channel 
+- Reacts with a random emoji (from list) and has a 1 in 3 chance of either: replying in thread, sending a dog pic in thread or passing when user types 'woof' in channel 
 - ```/woofpics``` sends a picture of a communinity members dog (powered by ```#cdn``` 😁)
-- 🧠 ```/idea``` uses [Hack Club AI](ai.hackclub.com) to generate a idea for a dog themed project with hourly rate limits
-- 🐩 ```/woof```
-- 🦴 ```@woofBot``` reacts to message and sends dog image in thread
-- 😾 Reacts with ```:neocat_evil``` (_hc slack exclusive_) and sends message in thread when 'meow' is typed in chat
+- ```/idea``` uses [Hack Club AI](ai.hackclub.com) to generate a idea for a dog themed project with hourly rate limits (and pings user when finished)
+- ```/woof```
+- ```@woofBot``` reacts to message and sends dog image in thread
+- Reacts with ```:neocat_evil``` (_hc slack exclusive_) and sends message in thread when 'meow' is typed in chat
 
 ### Try it out
 
@@ -63,7 +65,6 @@ SLACK_BOT_TOKEN=
 HCAI-API_KEY=
 SLACK_APP_TOKEN=
 ```
-
 - Install to channel on Slack
 - Run Script
 ```
