@@ -12,7 +12,7 @@ This project is being submitted to [Flavortown](flavortown.hackclub.com).
 ![](https://hackatime-badge.hackclub.com/U078VN0UU2K/woof-bot)
 
 > [!NOTE]
-> This is not currently being hosted! 😢
+> This is currently being hosted on a Pi Zero 2 W! 
 
 ### Features
 
