@@ -17,7 +17,7 @@ This project is being submitted to [Flavortown](flavortown.hackclub.com).
 ### Features
 
 - Reacts with a random emoji (from list) and has a 1 in 3 chance of either: replying in thread, sending a dog pic in thread or passing when user types 'woof' in channel 
-- ```/woofpics``` sends a picture of a communinity members dog (powered by ```#cdn``` 😁)
+- ```/dogpics``` sends a picture of a communinity members dog (powered by ```#cdn``` 😁)
 - ```/idea``` uses [Hack Club AI](ai.hackclub.com) to generate a idea for a dog themed project with hourly rate limits (and pings user when finished)
 - ```/woof```
 - ```@woofBot``` reacts to message and sends dog image in thread
